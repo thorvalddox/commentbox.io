@@ -31,6 +31,9 @@ const defaultOptions = {
     onCommentCount(count) {
 
     },
+    onCommentCountWithId(id, count) {
+
+    },
     testMode: false
 };
 
@@ -63,6 +66,7 @@ export default function commentBox(projectId, passedOptions = defaultOptions) {
         subtextColor,
         createBoxUrl,
         onCommentCount,
+        onCommentCountWithId,
         testMode
     } = Object.keys(defaultOptions).reduce((options, key) => {
 
@@ -211,6 +215,7 @@ export default function commentBox(projectId, passedOptions = defaultOptions) {
                     case 'count':
                         iFrame.setAttribute('data-comments-loaded', 'true');
                         onCommentCount(payload);
+                        onCommentCountWithId(id, payload);
                         break;
                     case 'resize':
                         iFrame.height = `${payload}px`;
